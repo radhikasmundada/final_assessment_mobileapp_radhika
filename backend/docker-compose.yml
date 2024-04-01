@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres-container
+    restart: always
+    environment:
+      POSTGRES_USER: radhika
+      POSTGRES_PASSWORD: radhika
+      POSTGRES_DB: web-app
+    ports:
+      - "5433:5432"
+    volumes:
+      - /Users/radhikamundada/Desktop/final_assessment_mobileApp_radhika/backend/docker-compose:/var/lib/postgresql/data
+  app:
+    build: .
+    image: demo-app
+    container_name: demo-app-container
+    restart: always
+    ports:
+      - "8089:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/web-app
+      SPRING_DATASOURCE_USERNAME: radhika
+      SPRING_DATASOURCE_PASSWORD: radhika
+    depends_on:
+      - db
+
+
+
