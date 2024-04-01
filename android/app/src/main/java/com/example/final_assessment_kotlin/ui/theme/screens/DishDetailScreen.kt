@@ -35,7 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 @Composable
-fun ProductDetailsScreen(navController: NavController, id: Int) {
+fun DishDetailsScreen(navController: NavController, id: Int) {
 
     var dish : Payload by remember {
         mutableStateOf(Payload())

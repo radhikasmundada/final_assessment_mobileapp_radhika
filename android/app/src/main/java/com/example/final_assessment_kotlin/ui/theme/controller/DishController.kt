@@ -10,6 +10,6 @@ interface DishController {
     @GET("dishes/")
     suspend fun getDishes(): Response<DishResponse>
 
-    @GET("products/fetch/{id}")
+    @GET("dishes/fetch/{id}")
     suspend fun getSingleProduct(@Path("id") id: Int) : Response<SingleDishResponse>
 }

@@ -16,53 +16,30 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.final_assessment_kotlin.ui.theme.FinalassessmentkotlinTheme
+import com.example.final_assessment_kotlin.ui.theme.screens.DishDetailsScreen
 import com.example.final_assessment_kotlin.ui.theme.screens.DishScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            FinalassessmentkotlinTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            Routing()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FinalassessmentkotlinTheme {
-        Greeting("Android")
-    }
-}
 
 @Composable
-fun App() {
+fun Routing() {
     var navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "productscreen") {
+    NavHost(navController = navController, startDestination = "dishscreen") {
 
-
-        composable(route = "productscreen") {
+        composable(route = "dishscreen") {
             DishScreen(navController)
         }
 
         composable(
-            route = "ProductDetailsScreen/{id}",                                 // need to mention  an argument of named name, email in curly brackets
+            route = "DishDetailScreen/{id}",                                 // need to mention  an argument of named name, email in curly brackets
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.IntType
@@ -71,7 +48,7 @@ fun App() {
         ) {
             var id = it.arguments?.getInt("id")
             id?.let {
-                DishDetailScreen(navController, id)
+               DishDetailsScreen(navController = navController, id = id)
             }
         }
     }
